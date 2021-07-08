@@ -38,7 +38,7 @@
       <div class="flex flex-row gap-2">
         <input
           type="text"
-          class="bg-blue-950 border rounded-none border-gray-350 search-bg"
+          class="bg-blue-950 border rounded-none border-gray-350 text-gray-350 search-bg"
           placeholder="search location"
         />
         <button class="bg-blue-600 text-gray-350 px-3 py-2 rounded-none">
@@ -78,7 +78,10 @@ export default {
 </script>
 <style lang="scss">
 .search-bg {
-  background-image: url('~../assets/img/Cloud-background.png');
-  @apply pl-6 bg-no-repeat bg-scroll;
+  background-image: url('~../assets/img/bx-search.svg');
+  @apply pl-8 bg-no-repeat bg-scroll bg-left bg-auto;
+}
+.bx-search {
+  @apply fill-current text-gray-350;
 }
 </style>
