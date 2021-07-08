@@ -38,10 +38,18 @@
       <div class="flex flex-row gap-2">
         <input
           type="text"
-          class="bg-blue-950 border rounded-none border-gray-350 text-gray-350 search-bg"
+          class="
+            bg-blue-950
+            border
+            rounded-none
+            border-gray-350
+            text-gray-350
+            search-bg
+          "
           placeholder="search location"
+          v-model="city"
         />
-        <button class="bg-blue-600 text-gray-350 px-3 py-2 rounded-none">
+        <button @click="search" class="bg-blue-600 text-gray-350 px-3 py-2 rounded-none">
           Search
         </button>
       </div>
@@ -54,6 +62,7 @@
 <script>
 import WeatherSide from '@/components/WeatherSide.vue';
 import { mapState } from 'vuex';
+import _debounce from 'lodash/debounce';
 
 export default {
   name: 'Sidebar',
@@ -61,7 +70,7 @@ export default {
     WeatherSide,
   },
   data() {
-    return { isVisible: false };
+    return { isVisible: false, city: '' };
   },
   mounted() {
     this.$store.commit('isClear');
@@ -73,6 +82,10 @@ export default {
     toggleInput() {
       this.isVisible = !this.isVisible;
     },
+    search: _debounce(function () {
+      console.log(this.city);
+      this.$store.dispatch('getLocation', this.city);
+    }, 500),
   },
 };
 </script>

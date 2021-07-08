@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { getLocation } from '../../services/geoCodingService';
+import getForecast from '../../services/weatherService';
 
 Vue.use(Vuex);
 
@@ -51,7 +54,16 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    async getForecast({ commit }, [lat, lng]) {
+      const response = await getForecast(lat, lng);
+      console.log(response);
+      return response;
+    },
+    async getLocation({ commit }, address) {
+      const response = await getLocation(address);
+      console.log(response);
+      return response;
+    },
   },
-  modules: {
-  },
+  modules: {},
 });
