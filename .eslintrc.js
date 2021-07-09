@@ -11,7 +11,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-dynamic-require': 'off',
     'node/global-require': 'off',
-    'max-len': 1,
+    // 'max-len': 1,
   },
 
 };

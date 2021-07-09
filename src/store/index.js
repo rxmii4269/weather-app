@@ -32,17 +32,36 @@ export default new Vuex.Store({
   },
   getters: {
     getCurrentWeatherIcon: (state) => (state.weatherInfo ? state.weatherInfo.current.weather[0].icon : 'Clear.png'),
-    tempC: (state) => (state.weatherInfo ? fahrenheitToCelcius(state.weatherInfo.current.temp) : 25),
-    tempF: (state) => (state.weatherInfo ? state.weatherInfo.current.temp : celciusToFahrenheit(25)),
+    tempC: (state) => (
+      state.weatherInfo
+        ? fahrenheitToCelcius(state.weatherInfo.current.temp)
+        : 25),
+    tempF: (state) => (
+      state.weatherInfo
+        ? state.weatherInfo.current.temp
+        : celciusToFahrenheit(25)),
     currentDate: (state) => (state.weatherInfo ? unixToDate(state.weatherInfo.current.dt) : 'Fri, 5 Jun'),
     currentDesc: (state) => (state.weatherInfo ? state.weatherInfo.current.weather[0].description : 'Shower'),
     currentLocation: (state) => (state.weatherInfo ? state.weatherInfo.location : 'Helsinki'),
     getCurrentWindDeg: (state) => (state.weatherInfo ? state.weatherInfo.current.wind_deg : ['N', 0 + -44]),
     getCurrentWindSpd: (state) => (state.weatherInfo ? state.weatherInfo.current.wind_speed : 7),
     getCurrentHumidity: (state) => (state.weatherInfo ? state.weatherInfo.current.humidity : 84),
-    getCurrentVisibility: (state) => (state.weatherInfo ? metersToMiles(state.weatherInfo.current.visibility) : 6.4),
-    getCurrentAirPressure: (state) => (state.weatherInfo ? state.weatherInfo.current.pressure : 998),
-    getFiveDayForecast: (state) => (state.weatherInfo ? state.weatherInfo.daily.slice(0, 5) : [{ temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }, { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }, { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }, { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }, { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }]),
+    getCurrentVisibility: (state) => (
+      state.weatherInfo
+        ? metersToMiles(state.weatherInfo.current.visibility)
+        : 6.4),
+    getCurrentAirPressure: (state) => (
+      state.weatherInfo
+        ? state.weatherInfo.current.pressure
+        : 998),
+    getFiveDayForecast: (state) => (
+      state.weatherInfo
+        ? state.weatherInfo.daily.slice(0, 5)
+        : [{ temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }]),
   },
   mutations: {
     isClear(state) {

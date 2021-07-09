@@ -111,9 +111,11 @@ export default {
       this.isVisible = false;
       this.$store.commit('resetLocationInfo');
     },
+    // eslint-disable-next-line func-names
     search: _debounce(function () {
       this.$store.dispatch('getLocation', this.city);
     }, 500),
+    // eslint-disable-next-line func-names
     getWeatherInfo: _debounce(async function (latlng, formattedaddress) {
       const lattlng = latlng;
       lattlng.formattedaddress = formattedaddress;
@@ -121,6 +123,7 @@ export default {
       this.cancel();
     }, 500),
 
+    // eslint-disable-next-line func-names
     currentWeather: _debounce(async function () {
       const result = await currentLocation();
       const { coords } = result;
