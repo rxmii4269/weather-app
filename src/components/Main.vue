@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-blue-960 flex flex-col flex-1 w-full px-16 gap-10">
-    <div class="mt-4 flex flex-row gap-3 self-end">
+  <div class="bg-blue-960 flex flex-col flex-1 w-full px-0 sm:px-16 md:px-8 lg:px-16 gap-10 pt-4 sm:pt-4 md:pt-0 lg:pt-0">
+    <div class="mt-4 hidden sm:hidden md:flex lg:flex flex-row gap-3 self-end ">
       <button
         title="Celcius"
         class="
@@ -38,7 +38,7 @@
         <span>F</span>
       </button>
     </div>
-    <div class="flex-1 w-full flex flex-col gap-24 text-gray-350">
+    <div class="flex-1 w-full flex flex-col gap-24 px-3 text-gray-350">
       <Forecast />
       <Highlights />
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="min-h-screen flex flex-row">
+  <div id="app" class="min-h-screen flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row">
     <Sidebar/>
     <Main/>
   </div>

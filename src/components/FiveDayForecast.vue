@@ -1,13 +1,35 @@
 <template>
-  <div class="flex justify-center gap-10 text-center">
-    <div v-for="day in getFiveDayForecast" :key="day.index" class="p-4 bg-blue-950 flex flex-col">
+  <div
+    class="
+      flex
+      justify-start
+      sm:justify-center
+      md:justify-center
+      lg:justify-center
+      flex-wrap
+      gap-2 gap-y-5
+      sm:gap-10
+      md:gap-1 md:gap-y-2
+      lg:gap-6
+      text-center
+    "
+  >
+    <div
+      v-for="day in getFiveDayForecast"
+      :key="day.index"
+      class="p-4 forecast bg-blue-950 flex flex-col"
+    >
       <h2>Tomorrow</h2>
       <div class="flex-grow">
         <WeatherImage classes="w-28" :img="day.weather[0].icon" />
       </div>
       <div class="flex justify-between">
-        <span class="text-gray-100">{{tempC(day.temp.max)}}<span>&deg;C</span></span>
-        <span class="text-gray-400">{{tempC(day.temp.min)}}<span>&deg;C</span></span>
+        <span class="text-gray-100"
+          >{{ tempC(day.temp.max) }}<span>&deg;C</span></span
+        >
+        <span class="text-gray-400"
+          >{{ tempC(day.temp.min) }}<span>&deg;C</span></span
+        >
       </div>
     </div>
     <!-- <div class="p-4 bg-blue-950">
@@ -55,7 +77,10 @@
 <script>
 import WeatherImage from '@/components/WeatherImage.vue';
 import { mapState, mapGetters } from 'vuex';
-import { celciusToFahrenheit, fahrenheitToCelcius } from '../../helpers/helpers';
+import {
+  celciusToFahrenheit,
+  fahrenheitToCelcius,
+} from '../../helpers/helpers';
 
 export default {
   name: 'Forecast',
@@ -72,3 +97,9 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+// .forecast:last-of-type {
+//     align-self: center;
+//     @apply mx-auto;
+//   }
+</style>

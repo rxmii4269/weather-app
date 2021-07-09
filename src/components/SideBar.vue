@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blue-950 flex flex-col w-96 gap-8">
+  <div class="bg-blue-950 flex flex-col w-full md:w-96 gap-8">
     <div
       v-if="!isVisible"
       class="px-6 pt-4 mt-4 flex flex-shrink flex-row justify-between"
@@ -11,7 +11,7 @@
         Search for places
       </button>
       <button
-        title="current location"
+        title="Current Location"
         class="
           bg-gray-650
           text-gray-350 text-2xl
@@ -23,11 +23,12 @@
           w-10
           shadow
         "
+        @click="currentWeather"
       >
         <i class="bx bx-current-location p-0"></i>
       </button>
     </div>
-    <div class="flex flex-col px-8 pt-2" v-if="isVisible">
+    <div class="flex flex-col mx-1 sm:mx-8 pt-2" v-if="isVisible">
       <button
         title="cancel"
         class="text-gray-350 text-4xl justify-end items-end self-end"
@@ -35,7 +36,7 @@
       >
         <i class="bx bx-x"></i>
       </button>
-      <div class="flex flex-row gap-2">
+      <div class="flex flex-row gap-1">
         <input
           type="text"
           class="
@@ -89,6 +90,7 @@
 import WeatherSide from '@/components/WeatherSide.vue';
 import { mapState } from 'vuex';
 import _debounce from 'lodash/debounce';
+import { currentLocation } from '../../helpers/helpers';
 
 export default {
   name: 'Sidebar',
@@ -117,6 +119,13 @@ export default {
       lattlng.formattedaddress = formattedaddress;
       await this.$store.dispatch('getForecast', latlng);
       this.cancel();
+    }, 500),
+
+    currentWeather: _debounce(async function () {
+      const result = await currentLocation();
+      const { coords } = result;
+      const { latitude: lat, longitude: lng } = coords;
+      this.$store.dispatch('getForecast', { lat, lng });
     }, 500),
   },
 };

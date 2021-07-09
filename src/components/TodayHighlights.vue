@@ -1,7 +1,20 @@
 <template>
   <div>
     <h1 class="text-2xl font-semibold">Today's Highlights</h1>
-    <div class="mt-5 grid grid-cols-2 gap-16">
+    <div
+      class="
+        mt-5
+        grid
+        gap-x-5
+        lg:gap-x-16
+        xl:gap-x-16
+        grid-cols-1
+        sm:grid-cols-1
+        md:grid-cols-1
+        lg:grid-cols-2
+        gap-16
+      "
+    >
       <div
         class="
           bg-blue-950
@@ -73,6 +86,9 @@
               overflow-hidden
               p-0
               w-64
+              md:w-36
+              lg:w-36
+              xl:w-64
             "
             max="100"
             :value="getCurrentHumidity"
@@ -91,7 +107,7 @@
         <h1>Air Pressure</h1>
         <h1 class="text-6xl">
           <span class="font-bold">{{ getCurrentAirPressure }}</span>
-          <span class="ml-4 text-4xl font-medium">mb</span>
+          <span class="ml-4 sm:ml-4 md:ml-0 lg:ml-0 text-4xl font-medium">mb</span>
         </h1>
       </div>
     </div>

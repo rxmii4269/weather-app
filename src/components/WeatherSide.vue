@@ -30,7 +30,7 @@
           <span class="text-center mx-3 mb-3 bottom-1 relative">&period;</span>
           <span>{{ currentDate }}</span>
         </div>
-        <div>
+        <div class="mb-3 sm:mb-3 md:mb-0 lg:mb-0">
           <i class="bx bxs-map mr-1"></i>
           <span>{{currentLocation}}</span>
         </div>
