@@ -29,6 +29,9 @@ export default new Vuex.Store({
     ThunderStormImg: 'ThunderStorm.png',
     locationInfo: '',
     weatherInfo: '',
+    defaultTemp: 'C',
+    isCelcius: true,
+    isFahrenheit: false,
   },
   getters: {
     getCurrentWeatherIcon: (state) => (state.weatherInfo ? state.weatherInfo.current.weather[0].icon : 'Clear.png'),
@@ -62,6 +65,8 @@ export default new Vuex.Store({
           { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
           { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
           { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }]),
+    celciusToFahrenheit: (state) => (temp) => (celciusToFahrenheit(temp)),
+    fahrenheitToCelcius: (state) => (temp) => (fahrenheitToCelcius(temp)),
   },
   mutations: {
     isClear(state) {
@@ -103,9 +108,19 @@ export default new Vuex.Store({
     resetLocationInfo(state) {
       state.locationInfo = '';
     },
+    setToCelcius(state) {
+      state.defaultTemp = 'C';
+      state.isCelcius = true;
+      state.isFahrenheit = false;
+    },
+    setToFahrenheit(state) {
+      state.defaultTemp = 'F';
+      state.isFahrenheit = true;
+      state.isCelcius = false;
+    },
   },
   actions: {
-    async getForecast({ commit, dispatch, state }, {
+    async getForecast({ commit, dispatch }, {
       lat, lng, formattedaddress,
     }) {
       let result = '';

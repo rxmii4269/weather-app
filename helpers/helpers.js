@@ -24,7 +24,8 @@ export function degreesToWindDirection(degrees) {
 }
 
 export function celciusToFahrenheit(temperature) {
-  return temperature * (9 / 5) + 32;
+  console.log(temperature);
+  return Math.round((temperature * (9 / 5)) + 32);
 }
 
 export function fahrenheitToCelcius(temperature) {

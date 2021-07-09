@@ -20,8 +20,7 @@
         title="Celcius"
         class="
           rounded-full
-          bg-gray-650
-          text-gray-350 text-lg
+           text-lg
           font-bold
           flex
           items-center
@@ -30,6 +29,8 @@
           w-10
           shadow
         "
+        :class="[isCelcius ? 'bg-gray-350 text-black' : 'bg-gray-650 text-gray-350']"
+        @click="toCelcius"
       >
         <span>&deg;</span>
         <span>C</span>
@@ -38,8 +39,7 @@
         title="Farhenhiet"
         class="
           rounded-full
-          bg-gray-650
-          text-gray-350 text-lg
+          text-lg
           font-bold
           flex
           items-center
@@ -48,6 +48,8 @@
           w-10
           shadow
         "
+        :class="[isFahrenheit ? 'bg-gray-350 text-black' : 'bg-gray-650 text-gray-350']"
+        @click="toFahrenheit"
       >
         <span>&deg;</span>
         <span>F</span>
@@ -65,6 +67,7 @@
 import Forecast from '@/components/FiveDayForecast.vue';
 import Highlights from '@/components/TodayHighlights.vue';
 import Footer from '@/components/Footer.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Main',
@@ -73,6 +76,18 @@ export default {
     Forecast,
     Highlights,
     Footer,
+  },
+  computed: {
+    ...mapState(['isCelcius', 'isFahrenheit']),
+  },
+
+  methods: {
+    toCelcius() {
+      this.$store.commit('setToCelcius');
+    },
+    toFahrenheit() {
+      this.$store.commit('setToFahrenheit');
+    },
   },
 };
 </script>

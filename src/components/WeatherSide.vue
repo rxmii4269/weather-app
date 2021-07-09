@@ -20,7 +20,10 @@
       <WeatherImage :img="getCurrentWeatherIcon" />
     </div>
     <div class="flex flex-col gap-12 text-center text-gray-350">
-      <h1 class="text-8xl">{{ tempC }}<sub class="text-4xl">&deg;C</sub></h1>
+      <h1 class="text-8xl">
+        {{ isCelcius ? tempC : Math.round(tempF)
+        }}<sub class="text-4xl">&deg;{{ defaultTemp }}</sub>
+      </h1>
       <div class="text-3xl font-bold capitalize">
         {{ currentDesc }}
       </div>
@@ -32,7 +35,7 @@
         </div>
         <div class="mb-3 sm:mb-3 md:mb-0 lg:mb-0">
           <i class="bx bxs-map mr-1"></i>
-          <span>{{currentLocation}}</span>
+          <span>{{ currentLocation }}</span>
         </div>
       </div>
     </div>
@@ -51,7 +54,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(['weatherInfo']),
+    ...mapState(['weatherInfo', 'isCelcius', 'defaultTemp']),
     ...mapGetters([
       'getCurrentWeatherIcon',
       'tempC',

@@ -25,53 +25,15 @@
       </div>
       <div class="flex justify-between">
         <span class="text-gray-100"
-          >{{ tempC(day.temp.max) }}<span>&deg;C</span></span
+          >{{ isCelcius ? fahrenheitToCelcius(day.temp.max) : Math.round(day.temp.max)
+          }}<span>&deg;{{ defaultTemp }}</span></span
         >
-        <span class="text-gray-400"
-          >{{ tempC(day.temp.min) }}<span>&deg;C</span></span
-        >
+        <span class="text-gray-400">
+          {{ isCelcius ? fahrenheitToCelcius(day.temp.min) : Math.round(day.temp.min)
+          }}<span>&deg;{{ defaultTemp }} </span>
+        </span>
       </div>
     </div>
-    <!-- <div class="p-4 bg-blue-950">
-      <h2>Tomorrow</h2>
-      <div class="">
-        <WeatherImage classes="w-28" />
-      </div>
-      <div class="flex justify-center gap-9">
-        <span>16<span>&deg;C</span></span>
-        <span>11<span>&deg;C</span></span>
-      </div>
-    </div>
-    <div class="p-4 bg-blue-950">
-      <h2>Tomorrow</h2>
-      <div class="">
-        <WeatherImage classes="w-28" />
-      </div>
-      <div class="flex justify-center gap-9">
-        <span>16<span>&deg;C</span></span>
-        <span>11<span>&deg;C</span></span>
-      </div>
-    </div>
-    <div class="p-4 bg-blue-950">
-      <h2>Tomorrow</h2>
-      <div class="">
-        <WeatherImage classes="w-28" />
-      </div>
-      <div class="flex justify-center gap-9">
-        <span>16<span>&deg;C</span></span>
-        <span>11<span>&deg;C</span></span>
-      </div>
-    </div>
-    <div class="p-4 bg-blue-950 text-center">
-      <h2>Tomorrow</h2>
-      <div class="">
-        <WeatherImage classes="w-28" />
-      </div>
-      <div class="flex justify-center gap-9">
-        <span>16<span>&deg;C</span></span>
-        <span>11<span>&deg;C</span></span>
-      </div>
-    </div> -->
   </div>
 </template>
 <script>
@@ -88,8 +50,12 @@ export default {
     WeatherImage,
   },
   computed: {
-    ...mapState(['weatherInfo']),
-    ...mapGetters(['getFiveDayForecast']),
+    ...mapState(['weatherInfo', 'defaultTemp', 'isCelcius', 'isFahrenheit']),
+    ...mapGetters([
+      'getFiveDayForecast',
+      'celciusToFahrenheit',
+      'fahrenheitToCelcius',
+    ]),
   },
   methods: {
     tempC: fahrenheitToCelcius,
