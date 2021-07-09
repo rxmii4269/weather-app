@@ -18,6 +18,6 @@ export async function getLocation(address) {
 }
 
 export async function reverseGeocoding(lat, lng) {
-  const response = await Axios.get(`geocode/json?latlng=${lat},${lng}&language=en`);
+  const response = await Axios.get(`geocode/json?latlng=${lat},${lng}&language=en&result_type=locality`);
   return response;
 }

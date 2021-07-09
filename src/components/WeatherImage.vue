@@ -8,7 +8,6 @@ export default {
     img: {
       type: String,
       default: 'Clear.png',
-      required: true,
     },
     classes: {
       type: String,

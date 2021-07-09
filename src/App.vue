@@ -7,11 +7,18 @@
 <script>
 import Sidebar from '@/components/SideBar.vue';
 import Main from '@/components/Main.vue';
+import { currentLocation } from '../helpers/helpers';
 
 export default {
   components: {
     Sidebar,
     Main,
+  },
+  async mounted() {
+    const result = await currentLocation();
+    const { coords } = result;
+    const { latitude: lat, longitude: lng } = coords;
+    this.$store.dispatch('getForecast', { lat, lng });
   },
 };
 </script>

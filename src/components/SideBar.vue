@@ -31,7 +31,7 @@
       <button
         title="cancel"
         class="text-gray-350 text-4xl justify-end items-end self-end"
-        @click="toggleInput"
+        @click="cancel"
       >
         <i class="bx bx-x"></i>
       </button>
@@ -49,13 +49,39 @@
           placeholder="search location"
           v-model="city"
         />
-        <button @click="search" class="bg-blue-600 text-gray-350 px-3 py-2 rounded-none">
+        <button
+          @click="search"
+          class="bg-blue-600 text-gray-350 font-semibold px-3 py-2 rounded-none"
+        >
           Search
+        </button>
+      </div>
+      <div class="mt-12 flex flex-col gap-5 text-gray-350">
+        <button
+          class="
+            border-2 border-opacity-0
+            rounded-none
+            hover:border-gray-500 hover:border-opacity-1
+            group
+            px-2
+            py-3
+            text-left
+            flex
+            justify-between
+            items-center
+            button
+          "
+          v-for="location in locationInfo"
+          :key="location.index"
+          @click="getWeatherInfo(location.geometry.location, location.formatted_address)"
+        >
+          <span> {{ location.formatted_address }} </span>
+          <i class="bx bx-chevron-right text-2xl text-gray-650 opacity-0"></i>
         </button>
       </div>
     </div>
     <div class="w-full">
-      <WeatherSide v-if="!isVisible" :img="currentWeather" />
+      <WeatherSide v-if="!isVisible" />
     </div>
   </div>
 </template>
@@ -72,19 +98,25 @@ export default {
   data() {
     return { isVisible: false, city: '' };
   },
-  mounted() {
-    this.$store.commit('isClear');
-  },
   computed: {
-    ...mapState(['currentWeather']),
+    ...mapState(['locationInfo', 'weatherInfo']),
   },
   methods: {
     toggleInput() {
       this.isVisible = !this.isVisible;
     },
+    cancel() {
+      this.isVisible = false;
+      this.$store.commit('resetLocationInfo');
+    },
     search: _debounce(function () {
-      console.log(this.city);
       this.$store.dispatch('getLocation', this.city);
+    }, 500),
+    getWeatherInfo: _debounce(async function (latlng, formattedaddress) {
+      const lattlng = latlng;
+      lattlng.formattedaddress = formattedaddress;
+      await this.$store.dispatch('getForecast', latlng);
+      this.cancel();
     }, 500),
   },
 };
@@ -96,5 +128,10 @@ export default {
 }
 .bx-search {
   @apply fill-current text-gray-350;
+}
+.button:hover {
+  & .bx-chevron-right {
+    @apply opacity-100;
+  }
 }
 </style>

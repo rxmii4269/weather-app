@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blue-960 flex flex-col flex-1 w-full px-24 gap-10">
+  <div class="bg-blue-960 flex flex-col flex-1 w-full px-16 gap-10">
     <div class="mt-4 flex flex-row gap-3 self-end">
       <button
         title="Celcius"
