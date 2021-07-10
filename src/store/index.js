@@ -59,12 +59,12 @@ export default new Vuex.Store({
         : 998),
     getFiveDayForecast: (state) => (
       state.weatherInfo
-        ? state.weatherInfo.daily.slice(0, 5)
-        : [{ temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
-          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
-          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
-          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
-          { temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }]),
+        ? state.weatherInfo.daily.slice(1, 6)
+        : [{ dt: 1625879166, temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { dt: 1625879166, temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { dt: 1625879166, temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { dt: 1625879166, temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] },
+          { dt: 1625879166, temp: { min: 51.8, max: 60.8 }, weather: [{ icon: 'Clear.png' }] }]),
     celciusToFahrenheit: (state) => (temp) => (celciusToFahrenheit(temp)),
     fahrenheitToCelcius: (state) => (temp) => (fahrenheitToCelcius(temp)),
   },

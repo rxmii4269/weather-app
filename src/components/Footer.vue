@@ -1,5 +1,5 @@
 <template>
-  <footer class="flex justify-center items-center text-gray-350">
+  <footer class="flex justify-center items-center text-gray-350 mt-4 sm:mt-0">
     <span
       >created by <span class="underline">rxmii4269</span> -
       <a

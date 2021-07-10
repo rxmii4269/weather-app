@@ -27,7 +27,7 @@
         "
       >
         <h1 class="">Wind Status</h1>
-        <h1 class="text-6xl">
+        <h1 class="text-6xl mb-4">
           <span class="font-bold">{{ getCurrentWindSpd }}</span>
           <sub class="text-4xl">mph</sub>
         </h1>
@@ -66,7 +66,7 @@
         "
       >
         <h1>Humidity</h1>
-        <h1 class="text-6xl">
+        <h1 class="text-6xl mb-4 sm:mb-0">
           <span class="font-bold">{{ getCurrentHumidity }}</span>
           <sub class="text-4xl relative bottom-1">%</sub>
         </h1>

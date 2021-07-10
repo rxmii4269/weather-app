@@ -5,7 +5,7 @@
       flex flex-col flex-1
       w-full
       px-0
-      sm:px-16
+      sm:px-2
       md:px-8
       lg:px-16
       gap-10

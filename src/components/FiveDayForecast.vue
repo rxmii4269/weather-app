@@ -1,37 +1,48 @@
 <template>
-  <div
-    class="
-      flex
-      justify-start
-      sm:justify-center
-      md:justify-center
-      lg:justify-center
-      flex-wrap
-      gap-2 gap-y-5
-      sm:gap-10
-      md:gap-1 md:gap-y-2
-      lg:gap-6
-      text-center
-    "
-  >
+  <div>
+    <h1 class="text-2xl font-semibold mb-5">Five Day Forecast</h1>
     <div
-      v-for="day in getFiveDayForecast"
-      :key="day.index"
-      class="p-4 forecast bg-blue-950 flex flex-col"
+      class="
+        flex
+        justify-start
+        content-evenly
+        sm:content-0
+        sm:justify-start
+        md:justify-center
+        lg:justify-center
+        flex-wrap
+        gap-2 gap-y-5
+        sm:gap-4
+        md:gap-1 md:gap-y-2
+        lg:gap-6
+        text-center
+      "
     >
-      <h2>Tomorrow</h2>
-      <div class="flex-grow">
-        <WeatherImage classes="w-28" :img="day.weather[0].icon" />
-      </div>
-      <div class="flex justify-between">
-        <span class="text-gray-100"
-          >{{ isCelcius ? fahrenheitToCelcius(day.temp.max) : Math.round(day.temp.max)
-          }}<span>&deg;{{ defaultTemp }}</span></span
-        >
-        <span class="text-gray-400">
-          {{ isCelcius ? fahrenheitToCelcius(day.temp.min) : Math.round(day.temp.min)
-          }}<span>&deg;{{ defaultTemp }} </span>
-        </span>
+      <div
+        v-for="(day, index) in getFiveDayForecast"
+        :key="index"
+        class="p-4 forecast bg-blue-950 m-4 sm:m-0 md:m-0 flex flex-col"
+      >
+        <h2>{{ index === 0 ? 'Tomorrow' : unixToDate(day.dt) }}</h2>
+        <div class="flex-grow">
+          <WeatherImage classes="w-28" :img="day.weather[0].icon" />
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-100"
+            >{{
+              isCelcius
+                ? fahrenheitToCelcius(day.temp.max)
+                : Math.round(day.temp.max)
+            }}<span>&deg;{{ defaultTemp }}</span></span
+          >
+          <span class="text-gray-400">
+            {{
+              isCelcius
+                ? fahrenheitToCelcius(day.temp.min)
+                : Math.round(day.temp.min)
+            }}<span>&deg;{{ defaultTemp }} </span>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -42,6 +53,7 @@ import { mapState, mapGetters } from 'vuex';
 import {
   celciusToFahrenheit,
   fahrenheitToCelcius,
+  unixToDate,
 } from '../../helpers/helpers';
 
 export default {
@@ -60,6 +72,7 @@ export default {
   methods: {
     tempC: fahrenheitToCelcius,
     tempF: celciusToFahrenheit,
+    unixToDate,
   },
 };
 </script>
