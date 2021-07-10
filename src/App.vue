@@ -14,12 +14,13 @@ export default {
     Sidebar,
     Main,
   },
-  async mounted() {
+  async created() {
     const result = await currentLocation();
     const { coords } = result;
     const { latitude: lat, longitude: lng } = coords;
     this.$store.dispatch('getForecast', { lat, lng });
   },
+  mounted() {},
 };
 </script>
 <style lang="scss">
