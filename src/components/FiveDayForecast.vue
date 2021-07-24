@@ -15,7 +15,7 @@
         sm:gap-4
         md:gap-1 md:gap-y-2
         lg:gap-5
-        xl:gap-6
+        xl:gap-5
         text-center
       "
     >
